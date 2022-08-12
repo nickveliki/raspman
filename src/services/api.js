@@ -552,9 +552,19 @@ const decryptLocal = (encrypted_pw, iv, target_pw_id, sharer_id)=>new Promise((r
         }, rej)
     }, rej)
 })
+const hls = (program, output, hls, token)=>new Promise((res, rej)=>{
+    fetch(process.env["API"]+"/files/hls", {method:"POST", headers:{"content-type":"application/json", token}, body:JSON.stringify({program, output, hls})}).then((req)=>{
+        if(req.ok){
+            res()
+        }else{
+            req.json().then(rej)
+        }
+    })
+   
+})
 const stopSharedPWsQuerys = ()=>{
     clearInterval(QuerySharedPasswordsInterval);
 }
 export {
-    register, login, logout, patch, forgotPW, getUserInfo, removeScope, getDriveInfo, getProcessInfo, getSystemInfo, getFolderContent, unmount, mkdir, createFile, uploadFile, mount, block, unblock, addScope, getText, addRouteToScope, submitShoppingList, removeShoppingItem, getShoppingList, getLock, getPasswords, setMasterPassword, checkMasterKey, unsetMasterKey, decryptPW, setPassword, getRemoteDevices, setRemoteDeviceSource, removeSource, refreshLogin, getSharedPWs, stopSharedPWsQuerys, sharePW, getpwmanusers, acceptPW, sendEncryptedPW, decryptLocal
+    hls, register, login, logout, patch, forgotPW, getUserInfo, removeScope, getDriveInfo, getProcessInfo, getSystemInfo, getFolderContent, unmount, mkdir, createFile, uploadFile, mount, block, unblock, addScope, getText, addRouteToScope, submitShoppingList, removeShoppingItem, getShoppingList, getLock, getPasswords, setMasterPassword, checkMasterKey, unsetMasterKey, decryptPW, setPassword, getRemoteDevices, setRemoteDeviceSource, removeSource, refreshLogin, getSharedPWs, stopSharedPWsQuerys, sharePW, getpwmanusers, acceptPW, sendEncryptedPW, decryptLocal
 }

@@ -148,7 +148,10 @@ const Passman = ()=><DynamicImport load={()=>import("../components/Passman")}>
 const AppRouter = (props) =>{
     return (
     <BrowserRouter>
-    <div className="fill">
+    <div onDrop={(ev)=>{
+        ev.preventDefault()
+        ev.stopPropagation()
+    }} className="fill">
         <div className="title">Home, sweet Home!</div>
         <DynamicImport  load={()=>import("../components/Header")}>
         {(Component)=> Component? <Component />:<Loader size="small" />}

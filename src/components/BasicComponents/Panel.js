@@ -3,7 +3,28 @@ import React, {forwardRef} from "react";
 export default forwardRef((props, ref)=>{
     return (
         <div style={props.style} className={`panel-back${props.margin?" margin"+props.margin:""}${props.fill?" fill":""}${props.modal?props.visible?" groupchats":" modal_hidden":""}${props.modal&&props.layer?" "+props.layer+"layer":""}${props.nooverflow?" overflowNo":""}`}>
-    <div className={`panel${props.fill||props.modal?" fill":""}${props.className?" " +props.className:""}`}>
+    <div onDrop={(ev)=>{
+        ev.preventDefault()
+        if(props.dragActive&&props.onDrop){
+            props.onDrop(ev)
+        }
+    }} onDragOver={(ev)=>{
+        ev.preventDefault()
+        if(props.dragActive&&props.onDragOver){
+            props.onDragOver(ev)
+        }
+    }} onDragEnter={(ev)=>{
+        ev.preventDefault()
+        if(props.dragActive&&props.onDragEnter){
+            props.onDragEnter(ev)
+        }
+    }}
+    onDragExit={(ev)=>{
+        ev.preventDefault()
+        if(props.dragActive&&props.onDragExit){
+            props.onDragExit(ev)
+        }
+    }}  className={`panel${props.fill||props.modal?" fill":""}${props.className?" " +props.className:""}`}>
     
         {props.panelHead&&!props.h&&<h3>{props.panelHead}</h3>}
         {props.panelHead&&props.h==1&&<h1>{props.panelHead}</h1>}
