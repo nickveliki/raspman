@@ -145,6 +145,9 @@ const FileExplorer = ()=><DynamicImport load= {()=>import("../components/FileExp
 const Passman = ()=><DynamicImport load={()=>import("../components/Passman")}>
     {(Component)=> Component?<Component />:<Loader />}
 </DynamicImport> 
+const CalendarMan = ()=><DynamicImport load={()=>import("../components/CalendarMain")}>
+     {(Component)=> Component?<Component />:<Loader />}
+</DynamicImport>
 const AppRouter = (props) =>{
     return (
     <BrowserRouter>
@@ -164,6 +167,7 @@ const AppRouter = (props) =>{
             <Route path="/Profile" component={()=>props.state.token?<EditUser {...props} />:NotFound} />
             <Route path="/ShoppingCart" component={ShoppingCart} exact={true} />
             <Route path="/Passman" component={Passman} exact={true} />
+            <Route path="/Calendar" component={CalendarMan} exact={true} />
             <Route component={NotFound}></Route>
         </Switch>
     </div>

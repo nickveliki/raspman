@@ -45,7 +45,7 @@ const Header = connect((state) => state)((props) => {
                 <div style={{ display: props.state.token == undefined ? "none" : "unset" }}>
                     <button ref={navBtn} className="white noborder login pointer" onClick={() => setNavopen(!navopen)}  ><img className="btnimg" src={menubtnimg} /></button>
                     <div style={{ display: navopen ? "unset" : "none", position: "absolute", top: navBtn.current.offsetTop + navBtn.current.clientHeight, left: "0" }} className="settingsmodal toplayer">
-                        <NavModal modSwitch={() => { setNavopen(!navopen) }} linkClass="white noborder pointer mTextbtnback marginSmall" className="column" links={[{ to: "/ShoppingCart", text: "Shopping Cart", requiredScopes: ["shopping"] }, { to: "/Passman", text: "Password Manager", requiredScopes: ["pwman"] }].filter(({ to, requiredScopes }) => hasScopes(props.state.token, ...requiredScopes) && !window.location.href.includes(to))} />
+                        <NavModal modSwitch={() => { setNavopen(!navopen) }} linkClass="white noborder pointer mTextbtnback marginSmall" className="column" links={[{ to: "/ShoppingCart", text: "Shopping Cart", requiredScopes: ["shopping"] }, { to: "/Passman", text: "Password Manager", requiredScopes: ["pwman"] }, {to:"/Calendar", text:"Calendar", requiredScopes:["calman"]}].filter(({ to, requiredScopes }) => hasScopes(props.state.token, ...requiredScopes) && !window.location.href.includes(to))} />
                     </div>
                 </div>
                 {props.state.token && <button onClick={() => { props.dispatch({ type: "setFolderView", chooseFile: props.state.chooseFile ? undefined : true }) }} className="white pointer noborder login"><img src={Folder} className="btnimg" /></button>}
